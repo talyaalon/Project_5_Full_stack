@@ -1,11 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet } from "react-router-dom";
 import "../css/Home.css";
 
+
+
 const Home = () => {
+    const [user, setUser] = useState("");
+    useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem("user")))
+      },[]);
   return (
     <div className="home-container">
-      <h1 className="title">Welcome to your dashboard!</h1>
+      <h1 className="title">Welcome {user?.name} !</h1>
       <nav className="navbar">
         <ul className="navbarList">
           <li className="navbarItem">
@@ -35,103 +41,13 @@ const Home = () => {
           </li>
         </ul>
       </nav>
-      <div className="content">
-        <p>You can navigate to different sections using the links above.</p>
-      </div>
+        <Outlet user={user}/>
+        <div>
+        {JSON.stringify(user)}
+        </div>
     </div>
   );
 };
 
 export default Home;
 
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import styles from '../css/Home.css';
-
-// const Home = () => {
-//   return (
-//     <div className={styles.container}>
-//       <h1 className={styles.title}>Welcome to your dashboard!</h1>
-//       <nav className={styles.navbar}>
-//         <ul className={styles.navbarList}>
-//           <li className={styles.navbarItem}>
-//             <Link to="/info" className={styles.navbarLink}>
-//               Info
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/todos" className={styles.navbarLink}>
-//               Todos
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/posts" className={styles.navbarLink}>
-//               Posts
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/albums" className={styles.navbarLink}>
-//               Albums
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/logout" className={styles.navbarLink}>
-//               Logout
-//             </Link>
-//           </li>
-//         </ul>
-//       </nav>
-//       <div className={styles.content}>
-//         <p>You can navigate to different sections using the links above.</p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import styles from '../css/Home.css';
-
-// function Home(){
-//   return (
-//     <div className={styles.container}>
-//       <nav className={styles.navbar}>
-//         <ul className={styles.navbarList}>
-//           <li className={styles.navbarItem}>
-//             <Link to="/info" className={styles.navbarLink}>
-//               Info
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/todos" className={styles.navbarLink}>
-//               Todos
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/posts" className={styles.navbarLink}>
-//               Posts
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/albums" className={styles.navbarLink}>
-//               Albums
-//             </Link>
-//           </li>
-//           <li className={styles.navbarItem}>
-//             <Link to="/logout" className={styles.navbarLink}>
-//               Logout
-//             </Link>
-//           </li>
-//         </ul>
-//       </nav>
-//       <div className={styles.content}>
-//         <h1>Welcome to your dashboard!</h1>
-//         <p>You can navigate to different sections using the links above.</p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
