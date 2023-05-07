@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../css/Home.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../css/Home.css";
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="home-container">
       <h1 className="title">Welcome to your dashboard!</h1>
       <nav className="navbar">
         <ul className="navbarList">
@@ -43,9 +43,6 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
 
 // import React from 'react';
 // import { Link } from 'react-router-dom';
@@ -92,7 +89,6 @@ export default Home;
 // };
 
 // export default Home;
-
 
 // import React from 'react';
 // import { Link } from 'react-router-dom';
