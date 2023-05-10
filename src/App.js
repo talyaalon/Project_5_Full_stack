@@ -8,23 +8,30 @@ import Albums from "./pages/Albums";
 import Posts from "./pages/Posts";
 import Logout from "./pages/Logout";
 import Todos from "./pages/Todos";
+import React, { useState } from "react";
+import ProtectedRoute from './pages/ProtectedRoute';
+
 
 
 function App() {
+  const [user, setUser] = useState(null);
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/login" element={<Login />}/>
-      <Route path="/" element={<Home />} >
-         <Route path="/Info" element={<Info />}/>
-         <Route path="/Todos" element={<Todos />}/>
-         <Route path="/Posts" element={<Posts />}/>
-         <Route path="/Albums" element={<Albums />}/>
-         <Route path="/Logout" element={<Logout />}/>
-      </Route>
-
-    </Routes>
-  </BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/" element={
+          <ProtectedRoute user={user} setUser={setUser}>
+            <Home user={user} />
+          </ProtectedRoute>
+        } >
+          <Route path="/Info" element={<Info user={user} />} />
+          <Route path="/Todos" element={<Todos />} />
+          <Route path="/Posts" element={<Posts />} />
+          <Route path="/Albums" element={<Albums />} />
+          <Route path="/Logout" element={<Logout />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

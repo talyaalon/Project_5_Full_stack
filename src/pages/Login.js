@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import "../css/Login.css";
 
+
 export const AuthContext = React.createContext(null);
 
-function Login() {
+function Login({ setUser }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const [user, setUser] = useState("");
-
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let response = await fetch("https://jsonplaceholder.typicode.com/users")
+    let json = await response.json()
+
         const result = json.find(
           (user) =>
             user.username === userName &&
@@ -29,13 +29,12 @@ function Login() {
         } else {
           setError("Your Username or Password wrong!");
         }
-      });
-    event.preventDefault();
+      };
+  
     // handle login logic here
-  };
+ 
 
   return (
-    <AuthContext.Provider value={user}>
     <div className="login-page">
       <div className="login-container">
         <h2>Login</h2>
@@ -69,7 +68,6 @@ function Login() {
         </form>
       </div>
     </div>
-    </AuthContext.Provider>
   );
 }
 

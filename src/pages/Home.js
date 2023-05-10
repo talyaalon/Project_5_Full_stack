@@ -42,9 +42,6 @@ const Home = () => {
         </ul>
       </nav>
         <Outlet user={user}/>
-        <div>
-        {JSON.stringify(user)}
-        </div>
     </div>
   );
 };
