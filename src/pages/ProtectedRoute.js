@@ -1,10 +1,15 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
 
-const ProtectedRoute = ({ children, user , setUser}) => {
+const ProtectedRoute = ({ children, user, setUser }) => {
+  const user_localStorage = window.localStorage.getItem("user");
+  useEffect(() => {
+    setUser(JSON.parse(user_localStorage));
+  }, []);
+
   if (!user) {
-    const user_localStorage = window.localStorage.getItem('user')
-    if (!user_localStorage) return <Navigate to='Login' />;
-    setUser(JSON.parse(user_localStorage))
+    if (!user_localStorage) return <Navigate to="Login" />;
+    // setUser(JSON.parse(user_localStorage))
   }
   return children;
 };
