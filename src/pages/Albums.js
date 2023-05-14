@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../css/Albums.css";
 
 function Albums({ user }) {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/albums')
-      .then(response => response.json())
-      .then(data => {
-        data = data.filter(a => a.userId === user.id)
+    fetch("https://jsonplaceholder.typicode.com/albums")
+      .then((response) => response.json())
+      .then((data) => {
+        data = data.filter((a) => a.userId === user.id);
         setAlbums(data);
-        localStorage.setItem("albums", JSON.stringify(data))
+        localStorage.setItem("albums", JSON.stringify(data));
       })
-      .catch(error => {
-        console.error('Error fetching albums:', error);
+      .catch((error) => {
+        console.error("Error fetching albums:", error);
       });
   }, [user]);
 
   return (
     <div>
-      <h2>Albums</h2>
+      <h2 className="albums-title">Albums</h2>
       <div className="albums-container">
-        {albums.map(album => (
-          <Link key={album.id} to={`/albums/${album.id}`} className="album-link">
+        {albums.map((album) => (
+          <Link
+            key={album.id}
+            to={`/albums/${album.id}`}
+            className="album-link"
+          >
             <div className="album">
-              <h4 className='album-id'>{`Album Id: ${album.id}`}</h4>
+              <h4 className="album-id">{`Album Id: ${album.id}`}</h4>
               <h3 className="album-title">{album.title}</h3>
             </div>
           </Link>
@@ -36,9 +40,6 @@ function Albums({ user }) {
 }
 
 export default Albums;
-
-
-
 
 // import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
