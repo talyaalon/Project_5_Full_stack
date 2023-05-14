@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "../css/Todos.css";
 
-const Todos = () => {
+const Todos = ({user}) => {
   const [todos, setTodos] = useState([]);
   const [sorting, setSorting] = useState("sequential");
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then((response) => response.json())
-      .then((response) => {
-        setTodos(response);
-      });
-  }, []);
+    const todos_item= localStorage.getItem("todos")
+    if(todos_item){
+        setTodos(JSON.parse(todos_item))
+    }
+    else{
+        fetch("https://jsonplaceholder.typicode.com/todos")
+        .then((response) => response.json())
+        .then((response) => {
+         response = response.filter(t => t.userId === user.id)
+          setTodos(response);
+          localStorage.setItem("todos", JSON.stringify(response))
+        });
+    }
+  }, [user]);
 
   const handleSortingChange = (e) => {
     setSorting(e.target.value);
@@ -38,11 +46,9 @@ const Todos = () => {
       copy_list.push({ ...e });
     }
     const index = copy_list.findIndex((t) => t.id === todo_id);
-    console.log(index);
     copy_list[index].completed = !copy_list[index].completed;
+    localStorage.setItem("todos", JSON.stringify(copy_list))
     setTodos(copy_list);
-    console.log("value");
-    console.log(copy_list[index].completed);
   }
   return (
     <div

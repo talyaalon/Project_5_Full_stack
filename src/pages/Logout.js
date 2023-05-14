@@ -6,13 +6,13 @@ function Logout(){
     const navigate = useNavigate() 
     useEffect(() => {
         setTimeout( () => navigate('/Login'), 1000)} , [])
-        window.localStorage.removeItem('user')
+        window.localStorage.clear()
 
     return(
         <div  className="content">
             Logout...
         </div>
-        
+
     )
 }
 

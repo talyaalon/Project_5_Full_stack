@@ -10,6 +10,7 @@ import Logout from "./pages/Logout";
 import Todos from "./pages/Todos";
 import React, { useState } from "react";
 import ProtectedRoute from './pages/ProtectedRoute';
+import Photos from './pages/Photos';
 
 
 
@@ -25,9 +26,11 @@ function App() {
           </ProtectedRoute>
         } >
           <Route path="/Info" element={<Info user={user} />} />
-          <Route path="/Todos" element={<Todos />} />
-          <Route path="/Posts" element={<Posts />} />
-          <Route path="/Albums" element={<Albums />} />
+          <Route path="/Todos" element={<Todos  user={user} />} />
+          <Route path="/Posts" element={<Posts user={user} />} />
+          <Route path="/Posts/:postId" element={<Posts user={user}/>} />
+          <Route path="/Albums" element={<Albums user={user}/>} />
+          <Route path="/Albums/:albumId" element={<Photos user={user}/>} />
           <Route path="/Logout" element={<Logout />} />
         </Route>
       </Routes>
