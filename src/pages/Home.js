@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import "../css/Home.css";
 
 
@@ -15,29 +15,29 @@ const Home = () => {
       <nav className="navbar">
         <ul className="navbarList">
           <li className="navbarItem">
-            <Link to="/info" className="navbarButton">
+            <NavLink to="/info" className="navbarButton">
               Info
-            </Link>
+            </NavLink>
           </li>
           <li className="navbarItem">
-            <Link to="/todos" className="navbarButton">
+            <NavLink to="/todos" className="navbarButton">
               Todos
-            </Link>
+            </NavLink>
           </li>
           <li className="navbarItem">
-            <Link to="/posts" className="navbarButton">
+            <NavLink to="/posts" className="navbarButton">
               Posts
-            </Link>
+            </NavLink>
           </li>
           <li className="navbarItem">
-            <Link to="/albums" className="navbarButton">
+            <NavLink to="/albums" className="navbarButton">
               Albums
-            </Link>
+            </NavLink>
           </li>
           <li className="navbarItem">
-            <Link to="/logout" className="navbarButton">
+            <NavLink to="/logout" className="navbarButton">
               Logout
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

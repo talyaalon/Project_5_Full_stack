@@ -34,6 +34,7 @@
 
 .navbarItem {
   margin: 0 1rem;
+  font-weight: bold;
 }
 
 .navbarButton {
@@ -46,6 +47,13 @@
   font-size: 1.2rem;
   transition: background-color 0.2s ease-in-out;
 }
+
+
+.navbarItem a.active {
+    font-weight: bold;
+    color: #cf3a6c;
+    background-color: #e1a0b6;
+  }
 
 .navbarButton:hover {
   background-color: #bbb;

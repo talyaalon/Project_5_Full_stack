@@ -20,7 +20,6 @@ function Albums({ user }) {
 
   return (
     <div>
-      <h2 className="albums-title">Albums</h2>
       <div className="albums-container">
         {albums.map((album) => (
           <Link

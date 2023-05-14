@@ -7,6 +7,7 @@ function Info({ user }) {
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>User Information</h1>
+      <hr></hr>
       <div style={styles.details}>
         <p style={styles.field}>
           <strong>ID:</strong> {user.id}

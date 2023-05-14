@@ -44,7 +44,6 @@ function Posts({ user }) {
 
   return (
     <div>
-      <h2>Posts</h2>
       <div className="posts-container">
         {posts.map((post) => (
           <div
